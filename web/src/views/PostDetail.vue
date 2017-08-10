@@ -57,8 +57,12 @@
 
     pre {
       background: #181818;
+      code {
+        background: #181818;
+      }
     }
-    a {
+
+    a[href] {
       color: #A4D100;
     }
 
@@ -70,7 +74,7 @@
   }
 
   @media (max-width: 767px) {
-    .markdown-body {
+    #postDetail.markdown-body {
       padding: 15px;
 
       hr {
