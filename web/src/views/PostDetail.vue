@@ -2,7 +2,7 @@
   <div class="detail-container">
     <div class="loading" v-if="loading"></div>
     <!-- TODO: back to list -->
-    <article class="markdown-body" v-else v-html="content.file"></article>
+    <article class="markdown-body" id="postDetail" v-else v-html="content.file"></article>
   </div>
 </template>
 
@@ -46,7 +46,7 @@
   }
 </style>
 <style lang="postcss">
-  .markdown-body {
+  #postDetail.markdown-body {
     box-sizing: border-box;
     width: 100%;
     max-width: 980px;
