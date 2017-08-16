@@ -2,14 +2,14 @@
   <div class="detail-container">
     <div class="loading" v-if="loading"></div>
     <!-- TODO: back to list -->
-    <article class="markdown-body" id="postDetail" v-else v-html="content.file"></article>
+    <article class="markdown-body" id="postDetail" v-else v-html="content"></article>
   </div>
 </template>
 
 <script>
   import hljs from 'highlight.js'
-  import '../assets/style/monokai.css'
   import 'github-markdown-css/github-markdown.css'
+  import 'highlight.js/styles/monokai-sublime.css'
 
   export default {
     name: 'postDetail',
@@ -23,13 +23,16 @@
       getPostHtml () {
         let file = this.$route.params.file
         this.$http.get(`/api/post/${file}`).then(({data}) => {
-          this.content = data
+          this.content = data.file
 
           this.$nextTick(() => {
             this.loading = false
-            document.querySelectorAll('pre code').forEach(block => {
-              hljs.highlightBlock(block)
-            })
+            setTimeout(() => {
+              console.log('block count: ', document.querySelectorAll('pre code').length)
+              document.querySelectorAll('pre code').forEach(block => {
+                hljs.highlightBlock(block)
+              })
+            }, 0)
           })
         })
       },
